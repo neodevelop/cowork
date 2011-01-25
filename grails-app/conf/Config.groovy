@@ -85,3 +85,10 @@ log4j = {
 
     warn   'org.mortbay.log'
 }
+
+// Added by the Spring Security Core plugin:
+grails.plugins.springsecurity.userLookup.userDomainClassName = 'com.synergyj.cowork.auth.Person'
+grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'com.synergyj.cowork.auth.PersonAuthority'
+grails.plugins.springsecurity.authority.className = 'com.synergyj.cowork.auth.Authority'
+grails.plugins.springsecurity.requestMap.className = 'com.synergyj.cowork.auth.Requestmap'
+grails.plugins.springsecurity.securityConfigType = 'Requestmap'
