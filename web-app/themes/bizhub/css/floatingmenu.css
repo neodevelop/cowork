@@ -1,0 +1,84 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+		#menu {
+		list-style:none;	
+		padding:0;
+		margin:0 auto;;
+		height:150px;
+		width:1000px;
+	}
+	
+		#menu li {
+		float:left;
+		width:100px;
+		height:150px;
+		position:relative;
+		overflow:hidden;
+	}
+		#menu li.home {
+		float:left;
+		width:172px;
+		height:150px;
+		position:relative;
+		overflow:hidden;
+	}
+		#menu li.aboutus {
+		float:left;
+		width:172px;
+		height:150px;
+		position:relative;
+		overflow:hidden;
+	}
+		#menu li.services {
+		float:left;
+		width:178px;
+		height:150px;
+		position:relative;
+		overflow:hidden;
+	}
+		#menu li.finance {
+		float:left;
+		width:206px;
+		height:150px;
+		position:relative;
+		overflow:hidden;
+	}
+		#menu li.support {
+		float:left;
+		width:180px;
+		height:150px;
+		position:relative;
+		overflow:hidden;
+	}
+		#menu li.contact {
+		float:left;
+		width:91px;
+		height:150px;
+		position:relative;
+		overflow:hidden;
+	}
+		#menu li a  {
+			position:absolute;
+			top:20px;
+			text-indent:-999em;
+			background:url(../images/b1.png) no-repeat 0 0;
+			display:block; 
+			height:150px;
+
+			/* fast png fix for ie6 */
+			position:relative;
+		behavior: expression((this.runtimeStyle.behavior="none")&&(this.pngSet?this.pngSet=true:(this.nodeName == "IMG" && this.src.toLowerCase().indexOf('.png')>-1?(this.runtimeStyle.backgroundImage = "none",
+this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.src + "', sizingMethod='image')",
+this.src = "transparent.gif"):(this.origBg = this.origBg? this.origBg :this.currentStyle.backgroundImage.toString().replace('url("','').replace('")',''),
+this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.origBg + "', sizingMethod='crop')",
+this.runtimeStyle.backgroundImage = "none")),this.pngSet=true));
+		}
+		
+		#menu li a.home {background:url(../images/b1.png) no-repeat 0 0 !important}
+		#menu li a.aboutus {background:url(../images/b2.png) no-repeat 0 0 !important}
+		#menu li a.services {background:url(../images/b3.png) no-repeat 0 0 !important}
+		#menu li a.finance {background:url(../images/b4.png) no-repeat 0 0 !important}
+		#menu li a.support {background:url(../images/b5.png) no-repeat 0 0 !important}
+		#menu li a.contact {background:url(../images/b6.png) no-repeat 0 0 !important}
