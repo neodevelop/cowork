@@ -86,6 +86,8 @@ log4j = {
     warn   'org.mortbay.log'
 }
 
+grails.views.javascript.library="jquery"
+
 // Added by the Spring Security Core plugin:
 grails.plugins.springsecurity.userLookup.userDomainClassName = 'com.synergyj.cowork.auth.Person'
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'com.synergyj.cowork.auth.PersonAuthority'
