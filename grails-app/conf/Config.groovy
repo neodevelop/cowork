@@ -92,3 +92,5 @@ grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'com.synergyj.
 grails.plugins.springsecurity.authority.className = 'com.synergyj.cowork.auth.Authority'
 grails.plugins.springsecurity.requestMap.className = 'com.synergyj.cowork.auth.Requestmap'
 grails.plugins.springsecurity.securityConfigType = 'Requestmap'
+grails.plugins.springsecurity.rememberMe.persistent = true
+grails.plugins.springsecurity.rememberMe.persistentToken.domainClassName = 'com.synergyj.cowork.auth.PersistentLogin'
