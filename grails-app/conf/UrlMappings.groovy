@@ -35,6 +35,26 @@ class UrlMappings {
           controller = "person"
           action = "list"
         }
+        "/createWorkspace"{
+          controller = "workspace"
+          action = "create"
+        }
+        "/saveWorkspace"{
+          controller = "workspace"
+          action = "save"
+        }
+        "/showWorkspace/$id"{
+          controller = "workspace"
+          action = "show"
+        }
+        "/updateWorkspace/$id"{
+          controller = "workspace"
+          action = "update"
+        }
+        "/listWorkspaces"{
+          controller = "workspace"
+          action = "list"
+        }
 		"500"(view:'/error')
 	}
 }

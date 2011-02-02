@@ -13,19 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.synergyj.cowork.auth
+package com.synergyj.cowork
 
-class Requestmap {
+class Workspace {
 
-	String url
-	String configAttribute
+  String nombreDeEspacio
+  String direccion
+  String ubicacionInterna
+  Integer tamanio // En metros cuadrados
+  Integer capacidad // En personas por sala
+  Float costoPorHora
+  String ubicacion // En coordenadas de maps
 
-	static mapping = {
-		cache true
-	}
-
-	static constraints = {
-		url blank: false, unique: true
-		configAttribute blank: false
-	}
+  static constraints = {
+    nombreDeEspacio blank: false
+    direccion blank:false,size:0..500
+    ubicacionInterna blank:true
+    tamanio blank:false
+    capacidad blank:false
+    costoPorHora blank:false
+    ubicacion blank:true
+  }
 }
