@@ -15,18 +15,20 @@
  */
 package com.synergyj.cowork
 
-import grails.test.*
+import com.synergyj.cowork.auth.Person
 
-class WorkspaceControllerTests extends ControllerUnitTestCase {
-    protected void setUp() {
-        super.setUp()
-    }
+class Reservation {
 
-    protected void tearDown() {
-        super.tearDown()
-    }
+  Workspace workspace
+  Person cliente
 
-    void testSomething() {
+  Date fechaHoraReservacion
+  Date fechaHoraTerminoDeUso
 
-    }
+  Date dateCreated
+  Date lastUpdated
+
+  static constraints = {
+
+  }
 }

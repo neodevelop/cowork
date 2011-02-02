@@ -15,18 +15,11 @@
  */
 package com.synergyj.cowork
 
-import grails.test.*
+class ReservationService {
 
-class WorkspaceControllerTests extends ControllerUnitTestCase {
-    protected void setUp() {
-        super.setUp()
-    }
+    static transactional = true
 
-    protected void tearDown() {
-        super.tearDown()
-    }
-
-    void testSomething() {
+    def creaReservacion() {
 
     }
 }

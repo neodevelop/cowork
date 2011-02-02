@@ -17,7 +17,7 @@ package com.synergyj.cowork
 
 import grails.test.*
 
-class WorkspaceControllerTests extends ControllerUnitTestCase {
+class ReservationControllerTests extends ControllerUnitTestCase {
     protected void setUp() {
         super.setUp()
     }

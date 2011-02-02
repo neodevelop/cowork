@@ -34,4 +34,8 @@ class Workspace {
     costoPorHora blank:false
     ubicacion blank:true
   }
+
+  String toString(){
+    nombreDeEspacio
+  }
 }

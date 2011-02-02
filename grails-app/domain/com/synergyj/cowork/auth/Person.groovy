@@ -52,4 +52,8 @@ class Person {
 	Set<Authority> getAuthorities() {
 		PersonAuthority.findAllByPerson(this).collect { it.authority } as Set
 	}
+
+    String toString(){
+      "${this.nombreReal} ${this.apellidoPaterno} ${this.apellidoMaterno}"
+    }
 }
