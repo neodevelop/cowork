@@ -1,0 +1,68 @@
+/**
+ * Copyright 2002-2010 SynergyJ Servicios Profesionales.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.synergyj.cowork
+
+class ReservationIntegrationTests extends GroovyTestCase{
+
+  def reservationService
+
+  static transactional = false
+
+  protected void setUp() {
+    super.setUp()
+  }
+
+  protected void tearDown() {
+    super.tearDown()
+  }
+
+  void testCreaReservacion(){
+    ReservationCommand command = creaReservationCommand(clienteId: 1,workspaceId: 1)
+    Reservation reservation = reservationService.creaReservacion(command)
+    assertNotNull reservation
+    assertNotNull reservation.cliente
+    assertNotNull reservation.workspace
+    assertTrue reservation.id > 0
+  }
+
+  void testCreaReservacionSinCliente(){
+    ReservationCommand command = creaReservationCommand(clienteId: 1000)
+    shouldFail(ReservationException){
+      Reservation reservation = reservationService.creaReservacion(command)
+    }
+  }
+
+  void testCreaReservacionSinWorkspace(){
+    ReservationCommand command = creaReservationCommand(clienteId: 1, workspaceId: 1000)
+    shouldFail(ReservationException){
+      Reservation reservation = reservationService.creaReservacion(command)
+    }
+  }
+
+  private ReservationCommand creaReservationCommand(Map datos){
+    GregorianCalendar calendar = new GregorianCalendar()
+    def time1 = calendar.time
+    calendar.add Calendar.HOUR,4
+    def time2 = calendar.time
+    ReservationCommand command = new ReservationCommand(
+            fechaHoraReservacion: time1,
+            fechaHoraTerminoDeUso: time2)
+    command.clienteId = datos.clienteId
+    command.workspaceId = datos.workspaceId
+    command
+  }
+
+}

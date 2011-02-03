@@ -15,11 +15,32 @@
  */
 package com.synergyj.cowork
 
+import com.synergyj.cowork.auth.Person
+
 class ReservationService {
 
     static transactional = true
 
-    def creaReservacion() {
-
+    def creaReservacion(ReservationCommand reservationCommand) {
+      Reservation reservation = new Reservation(reservationCommand.properties)
+      def cliente = Person.get(reservationCommand.clienteId)
+      if(cliente){
+        reservation.cliente = cliente
+      }else{
+        throw new ReservationException(message: "No se encuentra el cliente...")
+      }
+      def workspace = Workspace.get(reservationCommand.workspaceId)
+      if(workspace){
+        reservation.workspace = workspace
+      }else{
+        throw new ReservationException(message: "No se encuentra el espacio de trabajo...")
+      }
+      // TODO: Validar que las horas entren en lo indicado por el usuario
+      // TODO: Corroborar que el espacio de trabajo no este ocupado previamente en las horas deseadas
+      if(reservation.save()){
+        return reservation
+      }else{
+        throw new ReservationException(message:"No se pudo realizar la reservación...",reservation: reservation)
+      }
     }
 }

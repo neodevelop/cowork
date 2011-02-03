@@ -42,7 +42,7 @@
                                     <label for="fechaHoraReservacion"><g:message code="reservation.fechaHoraReservacion.label" default="Fecha Hora Reservacion" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: reservationInstance, field: 'fechaHoraReservacion', 'errors')}">
-                                    <g:datePicker name="fechaHoraReservacion" precision="day" value="${reservationInstance?.fechaHoraReservacion}"  />
+                                    <g:datePicker name="fechaHoraReservacion" precision="minute" value="${reservationInstance?.fechaHoraReservacion}"  />
                                 </td>
                             </tr>
                         
@@ -51,7 +51,7 @@
                                     <label for="fechaHoraTerminoDeUso"><g:message code="reservation.fechaHoraTerminoDeUso.label" default="Fecha Hora Termino De Uso" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: reservationInstance, field: 'fechaHoraTerminoDeUso', 'errors')}">
-                                    <g:datePicker name="fechaHoraTerminoDeUso" precision="day" value="${reservationInstance?.fechaHoraTerminoDeUso}"  />
+                                    <g:datePicker name="fechaHoraTerminoDeUso" precision="minute" value="${reservationInstance?.fechaHoraTerminoDeUso}"  />
                                 </td>
                             </tr>
                         

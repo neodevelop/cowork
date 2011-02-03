@@ -25,14 +25,12 @@
                             <g:sortableColumn property="id" title="${message(code: 'reservation.id.label', default: 'Id')}" />
                         
                             <th><g:message code="reservation.cliente.label" default="Cliente" /></th>
-                        
-                            <g:sortableColumn property="dateCreated" title="${message(code: 'reservation.dateCreated.label', default: 'Date Created')}" />
+
+                            <th><g:message code="reservation.workspace.label" default="Workspace" /></th>
                         
                             <g:sortableColumn property="fechaHoraReservacion" title="${message(code: 'reservation.fechaHoraReservacion.label', default: 'Fecha Hora Reservacion')}" />
                         
                             <g:sortableColumn property="fechaHoraTerminoDeUso" title="${message(code: 'reservation.fechaHoraTerminoDeUso.label', default: 'Fecha Hora Termino De Uso')}" />
-                        
-                            <g:sortableColumn property="lastUpdated" title="${message(code: 'reservation.lastUpdated.label', default: 'Last Updated')}" />
                         
                         </tr>
                     </thead>
@@ -43,14 +41,12 @@
                             <td><g:link action="show" id="${reservationInstance.id}">${fieldValue(bean: reservationInstance, field: "id")}</g:link></td>
                         
                             <td>${fieldValue(bean: reservationInstance, field: "cliente")}</td>
+
+                            <td>${fieldValue(bean: reservationInstance, field: "workspace")}</td>
                         
-                            <td><g:formatDate date="${reservationInstance.dateCreated}" /></td>
+                            <td><g:formatDate format="dd-MM-yy hh:mm" date="${reservationInstance.fechaHoraReservacion}" /></td>
                         
-                            <td><g:formatDate date="${reservationInstance.fechaHoraReservacion}" /></td>
-                        
-                            <td><g:formatDate date="${reservationInstance.fechaHoraTerminoDeUso}" /></td>
-                        
-                            <td><g:formatDate date="${reservationInstance.lastUpdated}" /></td>
+                            <td><g:formatDate format="hh:mm" date="${reservationInstance.fechaHoraTerminoDeUso}" /></td>
                         
                         </tr>
                     </g:each>

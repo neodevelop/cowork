@@ -15,18 +15,18 @@
  */
 package com.synergyj.cowork
 
-import grails.test.*
+class ReservationCommand {
 
-class ReservationServiceTests extends GrailsUnitTestCase {
-    protected void setUp() {
-        super.setUp()
-    }
+  Long workspaceId
+  Long clienteId
 
-    protected void tearDown() {
-        super.tearDown()
-    }
+  Date fechaHoraReservacion
+  Date fechaHoraTerminoDeUso
 
-    void testSomething() {
-
-    }
+  static constraints = {
+    workspaceId nullable:false
+    clienteId nullable:false
+    fechaHoraReservacion nullable:false
+    fechaHoraTerminoDeUso nullable:false
+  }
 }

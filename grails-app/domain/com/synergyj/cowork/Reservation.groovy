@@ -29,6 +29,9 @@ class Reservation {
   Date lastUpdated
 
   static constraints = {
-
+    workspace nullable:false
+    cliente nullable:false
+    fechaHoraReservacion nullable:false
+    fechaHoraTerminoDeUso nullable:false
   }
 }
