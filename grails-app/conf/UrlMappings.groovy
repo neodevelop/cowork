@@ -55,6 +55,26 @@ class UrlMappings {
           controller = "workspace"
           action = "list"
         }
+        "/createReservation"{
+          controller = "reservation"
+          action = "create"
+        }
+        "/saveReservation"{
+          controller = "reservation"
+          action = "save"
+        }
+        "/showReservation/$id"{
+          controller = "reservation"
+          action = "show"
+        }
+        "/updateReservation/$id"{
+          controller = "reservation"
+          action = "update"
+        }
+        "/listReservations"{
+          controller = "reservation"
+          action = "list"
+        }
 		"500"(view:'/error')
 	}
 }

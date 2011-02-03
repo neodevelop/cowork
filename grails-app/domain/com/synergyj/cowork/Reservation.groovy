@@ -24,6 +24,7 @@ class Reservation {
 
   Date fechaHoraReservacion
   Date fechaHoraTerminoDeUso
+  Boolean confirmado = false
 
   Date dateCreated
   Date lastUpdated
