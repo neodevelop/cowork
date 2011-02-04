@@ -15,12 +15,44 @@
  */
 package com.synergyj.cowork
 
+import com.synergyj.cowork.auth.Person
+
 class ReservationController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index = {
         redirect(action: "list", params: params)
+    }
+
+    def choose = {
+      ReservationCommand reservationCommand = new ReservationCommand()
+      [reservationCommand:reservationCommand]
+    }
+
+    def searchClients = {
+      def clienteQuery = params.clientquery
+      def criteria = Person.createCriteria()
+      def listClient = criteria.list {
+        or{
+          like "razonSocial","%${clienteQuery}%"
+          like "rfc","%${clienteQuery}%"
+          like "email","%${clienteQuery}%"
+        }
+      }
+      render(template: "../person/clientSimpleList",model: [listClient:listClient])
+    }
+
+    def searchWorkspaces = {
+      def workspacequery = params.workspacequery
+      def criteria = Workspace.createCriteria()
+      def listWorkspace = criteria.list {
+        or{
+          like "nombreDeEspacio","%${workspacequery}%"
+          like "direccion","%${workspacequery}%"
+        }
+      }
+      render(template: "../workspace/workspaceSimpleList",model: [listWorkspace:listWorkspace])
     }
 
     def list = {

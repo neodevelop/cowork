@@ -43,6 +43,8 @@
 	
 	</script>
 
+    <g:layoutHead />
+
 </head>
 
 <div id="wrapper">

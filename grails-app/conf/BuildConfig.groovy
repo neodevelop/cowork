@@ -30,6 +30,7 @@ grails.project.dependency.resolution = {
     }
     plugins {
         runtime 'org.grails.plugins:jquery:1.4.4.1'
+        runtime 'org.grails.plugins:jquery-ui:1.8.7'
         runtime 'org.grails.plugins:spring-security-core:1.1'
     }
 }
