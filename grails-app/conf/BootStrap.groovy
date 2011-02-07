@@ -37,7 +37,6 @@ class BootStrap {
     def correo = GeneradorDatos.generaCorreo(nombre)
     println "user: ${correo}"
     Person person = new Person(
-      username: correo,
       password: springSecurityService.encodePassword('password', correo),
       enabled: true,
       accountExpired: false,

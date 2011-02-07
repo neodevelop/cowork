@@ -16,46 +16,43 @@
 package com.synergyj.cowork.auth
 
 class Person {
+  String password
+  boolean enabled
+  boolean accountExpired
+  boolean accountLocked
+  boolean passwordExpired
 
-	String username
-	String password
-	boolean enabled
-	boolean accountExpired
-	boolean accountLocked
-	boolean passwordExpired
+  // Atributos para los clientes
+  String nombreReal
+  String apellidoPaterno
+  String apellidoMaterno
+  String razonSocial
+  String direccionFiscal
+  String rfc
+  String email
+  Date dateCreated
 
-    // Atributos para los clientes
-    String nombreReal
-    String apellidoPaterno
-    String apellidoMaterno
-    String razonSocial
-    String direccionFiscal
-    String rfc
-    String email
-    Date dateCreated
+  static constraints = {
+    password blank: false
+    nombreReal blank: false
+    apellidoPaterno blank: false
+    apellidoMaterno nullable: true, blank: true
+    razonSocial nullable: true, blank: true
+    direccionFiscal nullable: true, blank: true, size: 0..500
+    rfc nullable: true, size: 10..13, matches: "(^([A-Z]{4}))(([0-9]{6}))((([A-Z]|[0-9]){3})|())"
+    email email: true, blank: false, unique: true
+    dateCreated display: false
+  }
 
-	static constraints = {
-		username blank: false, unique: true
-		password blank: false
-        nombreReal blank:false
-        apellidoPaterno blank:false
-        apellidoMaterno nullable:true, blank:true
-        razonSocial nullable:true, blank:true
-        direccionFiscal nullable:true, blank:true,size:0..500
-        rfc nullable:true, size:10..13, matches:"(^([A-Z]{4}))(([0-9]{6}))((([A-Z]|[0-9]){3})|())"
-        email email:true, blank:false
-        dateCreated display:false
-	}
+  static mapping = {
+    password column: '`password`'
+  }
 
-	static mapping = {
-		password column: '`password`'
-	}
+  Set<Authority> getAuthorities() {
+    PersonAuthority.findAllByPerson(this).collect { it.authority } as Set
+  }
 
-	Set<Authority> getAuthorities() {
-		PersonAuthority.findAllByPerson(this).collect { it.authority } as Set
-	}
-
-    String toString(){
-      "${this.nombreReal} ${this.apellidoPaterno} ${this.apellidoMaterno}"
-    }
+  String toString() {
+    "${this.nombreReal} ${this.apellidoPaterno} ${this.apellidoMaterno}"
+  }
 }

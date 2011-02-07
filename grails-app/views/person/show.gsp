@@ -22,13 +22,6 @@
     <table>
       <tbody>
 
-      <!--tr class="prop">
-        <td valign="top" class="name"><g:message code="person.username.label" default="Username"/></td>
-
-        <td valign="top" class="value">${fieldValue(bean: personInstance, field: "username")}</td>
-
-      </tr-->
-
       <tr class="prop">
         <td valign="top" class="name"><g:message code="person.email.label" default="Email"/>:</td>
 
