@@ -10,8 +10,10 @@
 <!-- Floating Menu jQuery  --> 
 
 <link rel="stylesheet" href="${createLinkTo(dir: 'themes/bizhub/css', file: 'floatingmenu.css')}"/>
+<link rel="stylesheet" href="${createLinkTo(dir: 'css', file: 'myMenu.css')}"/>
 
 <g:javascript library="jquery" plugin="jquery"/>
+<jqui:resources themeCss="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/dark-hive/jquery-ui.css" />
 <script type="text/javascript" src="${createLinkTo(dir: 'themes/bizhub/js', file: 'jquery.easing.1.3.js')}"></script>
 	<script>
 	
@@ -47,6 +49,7 @@
 
 </head>
 
+
 <div id="wrapper">
 
 <!-- Begin Top Bar  -->
@@ -68,7 +71,7 @@
 <!-- End  Content  -->
 </div>
 <!-- End  Wrapper  -->
-
+<g:render template="/includes/myMenu"/>
 <g:render template="/includes/footer"  />
 </body>
 </html>

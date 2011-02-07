@@ -20,13 +20,16 @@ class ReservationCommand {
   Long workspaceId
   Long clienteId
 
-  Date fechaHoraReservacion
-  Date fechaHoraTerminoDeUso
+  Date fechaReservacion
+
+  String timeFrom
+  String timeTo
 
   static constraints = {
     workspaceId nullable:false
     clienteId nullable:false
-    fechaHoraReservacion nullable:false
-    fechaHoraTerminoDeUso nullable:false
+    fechaReservacion nullable:false
+    timeFrom blsnk:false
+    timeTo blank:false
   }
 }
