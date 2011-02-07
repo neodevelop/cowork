@@ -21,6 +21,8 @@ import grails.plugins.springsecurity.Secured
 @Secured(["hasRole('ROLE_OPERATOR')"])
 class ReservationController {
 
+    def reservationService
+
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index = {
@@ -30,6 +32,16 @@ class ReservationController {
     def choose = {
       ReservationCommand reservationCommand = new ReservationCommand()
       [reservationCommand:reservationCommand]
+    }
+
+    def prepare = { ReservationCommand reservationCommand ->
+      if(reservationCommand.validate()){
+        // TODO : Tomar y tratar la excepción(Horas de trabajo y disponibilidad) en caso de que no se pueda guardar
+        def reservation = reservationService.creaReservacion(reservationCommand)
+        render view:"show",model:[reservationInstance:reservation]
+      }else{
+       render view: "choose",model:[reservationCommand:reservationCommand]
+      }
     }
 
     def searchClients = {

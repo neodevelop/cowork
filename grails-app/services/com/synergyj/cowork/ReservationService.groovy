@@ -23,6 +23,8 @@ class ReservationService {
 
     def creaReservacion(ReservationCommand reservationCommand) {
       Reservation reservation = new Reservation(reservationCommand.properties)
+      reservation.fechaHoraReservacion = reservationCommand.getFechaHoraInicio()
+      reservation.fechaHoraTerminoDeUso = reservationCommand.getFechaHoraFin()
       def cliente = Person.get(reservationCommand.clienteId)
       if(cliente){
         reservation.cliente = cliente

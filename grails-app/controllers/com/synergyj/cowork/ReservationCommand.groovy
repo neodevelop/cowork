@@ -15,15 +15,19 @@
  */
 package com.synergyj.cowork
 
+import java.text.SimpleDateFormat
+
 class ReservationCommand {
 
   Long workspaceId
   Long clienteId
 
-  Date fechaReservacion
+  String fechaReservacion
 
-  String timeFrom
-  String timeTo
+  String timeFrom = "7:00 AM"
+  String timeTo = "8:00 AM"
+
+  private SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm a")
 
   static constraints = {
     workspaceId nullable:false
@@ -31,5 +35,13 @@ class ReservationCommand {
     fechaReservacion nullable:false
     timeFrom blsnk:false
     timeTo blank:false
+  }
+
+  Date getFechaHoraInicio(){
+    dateFormat.parse(this.fechaReservacion + " " + this.timeFrom)
+  }
+
+  Date getFechaHoraFin(){
+    dateFormat.parse(this.fechaReservacion + " " + this.timeTo)
   }
 }

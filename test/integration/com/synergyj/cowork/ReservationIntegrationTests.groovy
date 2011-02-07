@@ -53,13 +53,14 @@ class ReservationIntegrationTests extends GroovyTestCase{
   }
 
   private ReservationCommand creaReservationCommand(Map datos){
-    GregorianCalendar calendar = new GregorianCalendar()
-    def time1 = calendar.time
-    calendar.add Calendar.HOUR,4
-    def time2 = calendar.time
+    def time1 = "10:00 AM"
+    def time2 = "12:00 AM"
+    def fecha = "01-01-2011"
     ReservationCommand command = new ReservationCommand(
-            fechaHoraReservacion: time1,
-            fechaHoraTerminoDeUso: time2)
+      timeFrom:time1,
+      timeTo:time2,
+      fechaReservacion:fecha
+    )
     command.clienteId = datos.clienteId
     command.workspaceId = datos.workspaceId
     command
