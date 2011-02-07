@@ -15,6 +15,9 @@
  */
 package com.synergyj.cowork
 
+import grails.plugins.springsecurity.Secured
+
+@Secured(['permitAll'])
 class ContentController {
   def index = { }
   def home = {}
