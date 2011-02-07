@@ -1,3 +1,5 @@
+import grails.plugins.springsecurity.SecurityConfigType
+
 // locations to search for config files that get merged into the main config
 // config files can either be Java properties files or ConfigSlurper scripts
 
@@ -92,9 +94,24 @@ jqueryUi.minified = true ;
 
 // Added by the Spring Security Core plugin:
 grails.plugins.springsecurity.userLookup.userDomainClassName = 'com.synergyj.cowork.auth.Person'
+grails.plugins.springsecurity.userLookup.usernamePropertyName = 'email'
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'com.synergyj.cowork.auth.PersonAuthority'
 grails.plugins.springsecurity.authority.className = 'com.synergyj.cowork.auth.Authority'
 grails.plugins.springsecurity.requestMap.className = 'com.synergyj.cowork.auth.Requestmap'
-grails.plugins.springsecurity.securityConfigType = 'Requestmap'
 grails.plugins.springsecurity.rememberMe.persistent = true
 grails.plugins.springsecurity.rememberMe.persistentToken.domainClassName = 'com.synergyj.cowork.auth.PersistentLogin'
+grails.plugins.springsecurity.rememberMe.cookieName = 'cowork_remember_me'
+grails.plugins.springsecurity.rememberMe.key = 'k6oWpb49zm2Wqpsu'
+grails.plugins.springsecurity.rememberMe.alwaysRemember = true
+grails.plugins.springsecurity.rejectIfNoRule = true
+grails.plugins.springsecurity.securityConfigType = SecurityConfigType.Annotation
+grails.plugins.springsecurity.dao.reflectionSaltSourceProperty = 'username'
+grails.plugins.springsecurity.useSessionFixationPrevention = true
+
+grails.plugins.springsecurity.controllerAnnotations.staticRules = [
+    '/css/**': ['permitAll'],
+    '/themes/**': ['permitAll'],
+    '/js/**': ['permitAll'],
+    '/images/**': ['permitAll'],
+    '/plugins/**': ['permitAll']
+]
