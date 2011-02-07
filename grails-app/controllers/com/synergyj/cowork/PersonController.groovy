@@ -16,7 +16,9 @@
 package com.synergyj.cowork
 
 import com.synergyj.cowork.auth.Person
+import grails.plugins.springsecurity.Secured
 
+@Secured(["hasRole('ROLE_OPERATOR')"])
 class PersonController {
 
   def springSecurityService

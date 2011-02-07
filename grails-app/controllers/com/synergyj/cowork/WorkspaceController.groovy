@@ -15,6 +15,9 @@
  */
 package com.synergyj.cowork
 
+import grails.plugins.springsecurity.Secured
+
+@Secured(["hasRole('ROLE_OPERATOR')"])
 class WorkspaceController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
