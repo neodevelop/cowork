@@ -11,6 +11,10 @@ class UrlMappings {
 	      controller = 'content'
 	      action = 'home'
 	    }
+    name logout: '/logout' {
+	      controller = 'logout'
+	      action = 'index'
+	    }
 		name content: "/$id" {
 	      controller = 'content'
 	      action = 'content'

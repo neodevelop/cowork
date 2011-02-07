@@ -1,5 +1,5 @@
 <head>
-<meta name='layout' content='main' />
+<meta name='layout' content='content-bizhub' />
 <title>Login</title>
 <style type='text/css' media='screen'>
 #login {
@@ -26,6 +26,7 @@
 	border-top: 1px dashed gray;
 	margin-bottom: 10px;
 	height: 1%;
+  color: black;
 }
 #login .inner .cssform input[type='text'] {
 	width: 120px;

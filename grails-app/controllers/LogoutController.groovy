@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
+import grails.plugins.springsecurity.Secured
 
+@Secured(['permitAll'])
 class LogoutController {
 
 	/**

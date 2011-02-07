@@ -1,3 +1,4 @@
+<sec:ifAnyGranted roles="ROLE_OPERATOR">
 <div id="myMenu">
   <g:link controller="person" action="create" class="menuItem">Crea un cliente</g:link>
   <g:link controller="person" action="list">Ver clientes</g:link>
@@ -8,3 +9,4 @@
 <g:javascript>
   $("div#myMenu > a").button();
 </g:javascript>
+</sec:ifAnyGranted>
