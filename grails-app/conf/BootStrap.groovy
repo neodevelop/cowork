@@ -1,15 +1,24 @@
 import com.synergyj.cowork.auth.Person
 import com.synergyj.cowork.GeneradorDatos
 import com.synergyj.cowork.Workspace
+import com.synergyj.cowork.auth.Authority
+import com.synergyj.cowork.auth.PersonAuthority
 
 class BootStrap {
-
+  def springSecurityService
     def init = { servletContext ->
+      if(Authority.count() == 0) {
+        println "Creando roles"
+        def operator = new Authority(authority:'ROLE_OPERATOR')
+        operator.save(flush:true)
+      }
+      def operatorRole = Authority.findByAuthority('ROLE_OPERATOR')
       if(Person.count() == 0){
         println "Creando personas de prueba"
-        45.times {
+        5.times {
           def person = generatePerson()
           person.save(flush:true)
+          PersonAuthority.create(person, operatorRole, true)
         }
       }
       if(Workspace.count()==0){
@@ -26,13 +35,14 @@ class BootStrap {
   private Person generatePerson(){
     def nombre = GeneradorDatos.generaNombre()
     def correo = GeneradorDatos.generaCorreo(nombre)
+    println "user: ${correo}"
     Person person = new Person(
       username: correo,
-      password: 'password',
+      password: springSecurityService.encodePassword('password', correo),
       enabled: true,
-      accountExpired: true,
-      accountLocked: true,
-      passwordExpired: true,
+      accountExpired: false,
+      accountLocked: false,
+      passwordExpired: false,
       nombreReal: nombre,
       apellidoPaterno: GeneradorDatos.generaApellidoPAterno(),
       apellidoMaterno: GeneradorDatos.generaApellidoMaterno(),
@@ -41,6 +51,7 @@ class BootStrap {
       email: correo,
       rfc:GeneradorDatos.generaRFC()
     )
+
     return person
   }
 
