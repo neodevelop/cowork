@@ -1,0 +1,33 @@
+#myMenu{
+    font-size:10px;
+    bottom: 10px;
+    right: 10px;
+    position: fixed;
+    border: solid 2px #005588;
+    background: #005588;
+    padding:10px;
+    opacity: 0.75;
+    filter: alpha(opacity=75);
+}
+
+.razonSocial{
+    color:#03C5FF;
+    float:left;
+    font-size:18px;
+    line-height:30px;
+}
+
+.nombreEspacio{
+    color:#03C5FF;
+    float:left;
+    font-size:18px;
+    line-height:30px;
+}
+
+.clienteShortDetail{
+    padding:10px;
+}
+
+.workspaceShortDetail{
+    padding:10px;
+}
