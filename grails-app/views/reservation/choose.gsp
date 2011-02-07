@@ -11,7 +11,21 @@
     background-color: #440044;
   }
   </style>
-  <jqui:resources theme="darkness" />
+
+  <script type="text/javascript" src="http://keith-wood.name/js/jquery.timeentry.js"></script>
+  <style type="text/css">@import "http://keith-wood.name/css/jquery.timeentry.css";</style>
+  <g:javascript>
+    function customRange(input) {
+	  return {minTime: (input.id == 'timeTo' ?
+		$('#timeFrom').timeEntry('getTime') : null),
+		maxTime: (input.id == 'timeFrom' ?
+		$('#timeTo').timeEntry('getTime') : null)};
+    }
+    $(function(){
+      $('#fechaReservacion').datepicker({dateFormat:'dd-mm-yy'});
+      $('.timeRange').timeEntry({beforeShow: customRange,timeSteps:[1,30,0],ampmPrefix: ' '});
+    });
+  </g:javascript>
 </head>
 <body>
 <div id="left">
@@ -54,14 +68,22 @@
 
 </div>
 
-<div id="right" style="display:none;">
-  <label>Fecha de reservacion:</label> <g:textField name="fechaReservacion"/><br/><br/>
-  <label>Hora de inicio:</label> <g:textField name="horaInicio"/><br/>
-  <label>Hora de termino:</label> <g:textField name="horaFin"/><br/>
+<g:form action="prepare">
+<g:hiddenField name="workspaceId"/>
+<g:hiddenField name="clienteId"/>
+
+<div id="right" style="display:block;">
+  <div id="rightbox">
+    <label>Fecha de reservacion:</label> <g:textField name="fechaReservacion"/><br/><br/>
+    <label>Hora de inicio:</label><br/><input type="text" size="10" class="timeRange" id="timeFrom" name="timeFrom"><br/>
+    <label>Hora de termino:</label><br/><input type="text" size="10" class="timeRange" id="timeTo" name="timeTo"><br/>
+  </div>
 </div>
 
+</g:form>
+
 <g:javascript>
-  var selectorTablaClientes = "table#clientList > tbody > tr > td";
+  var selectorTablaClientes = ".clienteShortDetail";
   $(selectorTablaClientes).live('mouseover', function() {
     $(this).addClass('highlight');
   });
@@ -74,7 +96,7 @@
     $(this).addClass('itemSelected');
   });
 
-  var selectorTablaWorkspace = "table#workspaceList > tbody > tr > td";
+  var selectorTablaWorkspace = ".workspaceShortDetail";
   $(selectorTablaWorkspace).live('mouseover', function() {
     $(this).addClass('highlight');
   });
