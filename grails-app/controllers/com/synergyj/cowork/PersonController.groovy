@@ -46,8 +46,7 @@ class PersonController {
     personInstance.accountExpired = false
     personInstance.accountLocked = false
     personInstance.enabled = true
-    personInstance.username = params.email
-    personInstance.password = springSecurityService.encodePassword("password")
+    personInstance.password = springSecurityService.encodePassword(params.password, params.email)
     if (personInstance.save(flush: true)) {
       //flash.message = "${message(code: 'default.created.message', args: [message(code: 'person.label', default: 'Cliente'), personInstance.id])}"
       flash.message = "${message(code: 'default.created.message', args: [message(code: 'person.label', default: 'Cliente'), personInstance.razonSocial])}"
