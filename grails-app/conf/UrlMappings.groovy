@@ -15,6 +15,10 @@ class UrlMappings {
       controller = 'logout'
       action = 'index'
     }
+    name signup: '/signup' {
+      controller = 'register'
+      action = 'user'
+    }
     name content: "/$id" {
       controller = 'content'
       action = 'content'

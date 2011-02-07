@@ -7,13 +7,13 @@
 	text-align:center;
 }
 #login .inner {
-	width:260px;
+	width:560px;
 	margin:0px auto;
 	text-align:left;
 	padding:10px;
 	border-top:1px dashed #499ede;
 	border-bottom:1px dashed #499ede;
-	background-color:#EEF;
+	background-color: #529ec1;
 }
 #login .inner .fheader {
 	padding:4px;margin:3px 0px 3px 0;color:#2e3741;font-size:14px;font-weight:bold;
@@ -29,16 +29,17 @@
   color: black;
 }
 #login .inner .cssform input[type='text'] {
-	width: 120px;
+	width: 370px;
 }
 #login .inner .cssform label {
 	font-weight: bold;
 	float: left;
 	margin-left: -105px;
-	width: 100px;
+	width: 150px;
+  vertical-align:text-bottom;
 }
 #login .inner .login_message {color:red;}
-#login .inner .text_ {width:120px;}
+#login .inner .text_ {width:370px;}
 #login .inner .chk {height:12px;}
 </style>
 </head>
@@ -49,10 +50,10 @@
 			<g:if test='${flash.message}'>
 			<div class='login_message'>${flash.message}</div>
 			</g:if>
-			<div class='fheader'>Please Login..</div>
+			<div class='fheader'>Por favor inicia sesión..</div>
 			<form action='${postUrl}' method='POST' id='loginForm' class='cssform' autocomplete='off'>
 				<p>
-					<label for='username'>Login ID</label>
+					<label for='username'>Email</label>
 					<input type='text' class='text_' name='j_username' id='username' />
 				</p>
 				<p>
@@ -60,12 +61,15 @@
 					<input type='password' class='text_' name='j_password' id='password' />
 				</p>
 				<p>
-					<label for='remember_me'>Remember me</label>
+					<label for='remember_me'>Recuerda mi sesi&oacute;n</label>
 					<input type='checkbox' class='chk' name='${rememberMeParameter}' id='remember_me'
 					<g:if test='${hasCookie}'>checked='checked'</g:if> />
 				</p>
 				<p>
-					<input type='submit' value='Login' />
+					<input type='submit' value='Login' class="button"/>
+                  <a href="${g.createLink(mapping:'signup')}" class="button">
+                  Crear cuenta
+                  </a>
 				</p>
 			</form>
 		</div>
@@ -74,6 +78,7 @@
 <!--
 (function(){
 	document.forms['loginForm'].elements['j_username'].focus();
+  $(".button").button();
 })();
 // -->
 </script>
