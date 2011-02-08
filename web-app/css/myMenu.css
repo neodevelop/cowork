@@ -8,6 +8,7 @@
     padding:10px;
     opacity: 0.75;
     filter: alpha(opacity=75);
+    z-index:20000;
 }
 
 .razonSocial{
