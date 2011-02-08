@@ -17,7 +17,7 @@ class UrlMappings {
     }
     name signup: '/signup' {
       controller = 'register'
-      action = 'user'
+      action = 'form'
     }
     name content: "/$id" {
       controller = 'content'

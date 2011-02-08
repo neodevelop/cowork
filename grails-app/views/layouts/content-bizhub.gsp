@@ -14,6 +14,7 @@
 
 <g:javascript library="jquery" plugin="jquery"/>
 <jqui:resources themeCss="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/dark-hive/jquery-ui.css" />
+
 <script type="text/javascript" src="${createLinkTo(dir: 'themes/bizhub/js', file: 'jquery.easing.1.3.js')}"></script>
 	<script>
 	
@@ -59,8 +60,13 @@
 
 <!-- Begin Header  -->
 <!-- End Header  -->
+<g:set var="idMenu" value="${pageProperty(name:'page.topMenu')}"/>
+<g:if test="${idMenu=='none'}">
+</g:if>
+<g:else>
+  <g:render template="/includes/nav"  />
+</g:else>
 
-<g:render template="/includes/nav"  />
 
 <!-- Begin Content  -->
   <div id="content">
