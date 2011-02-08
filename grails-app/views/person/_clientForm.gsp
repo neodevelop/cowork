@@ -44,6 +44,15 @@
 
         <tr class="prop">
           <td valign="top" class="name">
+            <label for="password"><g:message code="person.password.label" default="Password"/></label>
+          </td>
+          <td valign="top" class="value ${hasErrors(bean: personInstance, field: 'password', 'errors')}">
+            <g:passwordField name="password"  value=""/>
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name">
             <label for="razonSocial"><g:message code="person.razonSocial.label" default="Razon Social"/></label>
           </td>
           <td valign="top" class="value ${hasErrors(bean: personInstance, field: 'razonSocial', 'errors')}">
@@ -66,6 +75,15 @@
           </td>
           <td valign="top" class="value ${hasErrors(bean: personInstance, field: 'rfc', 'errors')}">
             <g:textArea name="direccionFiscal" value="${personInstance?.direccionFiscal}" cols="40" rows="5"/>
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name">
+            <label for="operator"><g:message code="person.operator.label" default="Operador"/></label>
+          </td>
+          <td valign="top" class="value">
+            <g:checkBox name="operator"/>
           </td>
         </tr>
 

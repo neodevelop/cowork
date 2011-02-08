@@ -1,6 +1,7 @@
 <head>
 <meta name='layout' content='content-bizhub' />
 <title>Login</title>
+  <parameter name="topMenu" value="none"/>
 <style type='text/css' media='screen'>
 #login {
 	margin:15px 0px; padding:0px;
