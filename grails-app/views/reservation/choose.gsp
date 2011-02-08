@@ -74,15 +74,25 @@
 
 <div id="right" style="display:block;">
   <div id="rightbox">
+    <g:hasErrors bean="${reservationCommand}">
+      <!--g:renderErrors bean="${reservationCommand}"/-->
+      <div class="error">
+        <b>Los datos son incorrectos...</b>
+      </div>
+    </g:hasErrors>
     <label>Fecha de reservacion:</label> <g:textField name="fechaReservacion"/><br/><br/>
-    <label>Hora de inicio:</label><br/><input type="text" size="10" class="timeRange" id="timeFrom" name="timeFrom"><br/>
-    <label>Hora de termino:</label><br/><input type="text" size="10" class="timeRange" id="timeTo" name="timeTo"><br/>
+    <label>Hora de inicio:</label>
+    <br/><input type="text" size="10" class="timeRange" id="timeFrom" name="timeFrom" value="${reservationCommand.timeFrom}"><br/>
+    <label>Hora de termino:</label>
+    <br/><input type="text" size="10" class="timeRange" id="timeTo" name="timeTo" value="${reservationCommand.timeTo}"><br/>
+    <br/><input type="submit" name="doReservation" value="Realizar reservación" id="doReservation"/>
   </div>
 </div>
 
 </g:form>
 
 <g:javascript>
+  $('#rightbox :submit').button();
   var selectorTablaClientes = ".clienteShortDetail";
   $(selectorTablaClientes).live('mouseover', function() {
     $(this).addClass('highlight');
@@ -93,6 +103,7 @@
   $(selectorTablaClientes).live('click', function() {
     $(selectorTablaClientes).removeClass('itemSelected');
     $(this).find(":radio").attr('checked', 'checked');
+    $('input#clienteId').val($(this).find(":radio").val());
     $(this).addClass('itemSelected');
   });
 
@@ -106,6 +117,7 @@
   $(selectorTablaWorkspace).live('click', function() {
     $(selectorTablaWorkspace).removeClass('itemSelected');
     $(this).find(":radio").attr('checked', 'checked');
+    $('input#workspaceId').val($(this).find(":radio").val());
     $(this).addClass('itemSelected');
     if(!$("#right").is(':visible')){
       $("#right").fadeIn();

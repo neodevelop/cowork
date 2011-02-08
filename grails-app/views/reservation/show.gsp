@@ -36,21 +36,28 @@
       </tr>
 
       <tr class="prop">
-        <td valign="top" class="name"><g:message code="reservation.fechaHoraReservacion.label" default="Fecha Hora Reservacion"/></td>
+        <td valign="top" class="name"><g:message code="reservation.fechaHoraReservacion.label" default="Fecha:"/></td>
 
-        <td valign="top" class="value"><g:formatDate format="dd-MM-yy hh:mm" date="${reservationInstance?.fechaHoraReservacion}"/></td>
-
-      </tr>
-
-      <tr class="prop">
-        <td valign="top" class="name"><g:message code="reservation.fechaHoraTerminoDeUso.label" default="Fecha Hora Termino De Uso"/></td>
-
-        <td valign="top" class="value"><g:formatDate format="dd-MM-yy hh:mm"  date="${reservationInstance?.fechaHoraTerminoDeUso}"/></td>
+        <td valign="top" class="value"><g:formatDate format="dd-MM-yy" date="${reservationInstance?.fechaHoraReservacion}"/></td>
 
       </tr>
 
       <tr class="prop">
-        <td valign="top" class="name"><g:message code="reservation.workspace.label" default="Workspace"/></td>
+        <td valign="top" class="name"><g:message code="reservation.fechaHoraReservacion.label" default="Empieza a las:"/></td>
+
+        <td valign="top" class="value"><g:formatDate format="hh:mm a" date="${reservationInstance?.fechaHoraReservacion}"/></td>
+
+      </tr>
+
+      <tr class="prop">
+        <td valign="top" class="name"><g:message code="reservation.fechaHoraTerminoDeUso.label" default="Termina a las: "/></td>
+
+        <td valign="top" class="value"><g:formatDate format="hh:mm a"  date="${reservationInstance?.fechaHoraTerminoDeUso}"/></td>
+
+      </tr>
+
+      <tr class="prop">
+        <td valign="top" class="name"><g:message code="reservation.workspace.label" default="Espacio de trabajo"/></td>
 
         <td valign="top" class="value"><g:link controller="workspace" action="show" id="${reservationInstance?.workspace?.id}">${reservationInstance?.workspace?.encodeAsHTML()}</g:link></td>
 
@@ -62,7 +69,7 @@
   <div class="buttons">
     <g:form>
       <g:hiddenField name="id" value="${reservationInstance?.id}"/>
-      <span class="button"><g:actionSubmit class="edit" action="edit" value="${message(code: 'default.button.edit.label', default: 'Edit')}"/></span>
+      <span class="button"><!--g:actionSubmit class="edit" action="edit" value="${message(code: 'default.button.edit.label', default: 'Edit')}"/--></span>
       <span class="button"><g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/></span>
     </g:form>
   </div>
