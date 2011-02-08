@@ -15,6 +15,8 @@ class BootStrap {
         println "Creando roles"
         def operator = new Authority(authority:'ROLE_OPERATOR')
         operator.save(flush:true)
+        def user = new Authority(authority:'ROLE_USER')
+        user.save(flush:true)
       }
       def operatorRole = Authority.findByAuthority('ROLE_OPERATOR')
       if(Person.count() == 0){
