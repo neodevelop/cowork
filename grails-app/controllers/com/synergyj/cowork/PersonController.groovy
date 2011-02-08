@@ -17,6 +17,8 @@ package com.synergyj.cowork
 
 import com.synergyj.cowork.auth.Person
 import grails.plugins.springsecurity.Secured
+import com.synergyj.cowork.auth.PersonAuthority
+import com.synergyj.cowork.auth.Authority
 
 @Secured(["hasRole('ROLE_OPERATOR')"])
 class PersonController {
@@ -49,6 +51,8 @@ class PersonController {
     personInstance.password = springSecurityService.encodePassword(params.password, params.email)
     if (personInstance.save(flush: true)) {
       //flash.message = "${message(code: 'default.created.message', args: [message(code: 'person.label', default: 'Cliente'), personInstance.id])}"
+      def userRole = Authority.findByAuthority("ROLE_USER")
+      PersonAuthority.create(personInstance, userRole, true)
       flash.message = "${message(code: 'default.created.message', args: [message(code: 'person.label', default: 'Cliente'), personInstance.razonSocial])}"
       redirect(action: "show", id: personInstance.id)
     }
