@@ -3,10 +3,14 @@ import com.synergyj.cowork.GeneradorDatos
 import com.synergyj.cowork.Workspace
 import com.synergyj.cowork.auth.Authority
 import com.synergyj.cowork.auth.PersonAuthority
+import grails.converters.JSON
 
 class BootStrap {
   def springSecurityService
     def init = { servletContext ->
+      JSON.registerObjectMarshaller(Date) {
+         return it?.format("yyyy-MM-dd'T'HH:mm:ss'Z'")
+      }
       if(Authority.count() == 0) {
         println "Creando roles"
         def operator = new Authority(authority:'ROLE_OPERATOR')
