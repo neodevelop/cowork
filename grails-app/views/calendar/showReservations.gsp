@@ -20,7 +20,7 @@
           center: 'title',
           right: 'month,agendaWeek,agendaDay'
         },
-        events: "http://localhost:8080/cowork/calendar/populateReservations"
+        events: "${createLink(controller:'calendar',action:'populateReservations')}"
       });
     });
   </g:javascript>

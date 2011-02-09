@@ -32,9 +32,20 @@ class CalendarController {
   @Secured(['permitAll'])
     def populateReservations = {
       def results = calendarService.obtainReservations()
-      //def formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US)
-      def jsonResults = []
-      results.each {Reservation event ->
+      def jsonResults = wrapperEventInfo(results)
+      render jsonResults as JSON
+    }
+
+  @Secured(['permitAll'])
+  def populateReservationsByWorkspace = {
+    def results = calendarService.obtainReservationsByWorkspace(Long.valueOf(params.workspaceId))
+    def jsonResults = wrapperEventInfo(results)
+    render jsonResults as JSON
+  }
+
+  private def wrapperEventInfo(reservations){
+    def eventsInfos = []
+      reservations.each {Reservation event ->
         def evento = new EventInfo(
           id:event.id,
           title:"${event.cliente.razonSocial} - ${event.workspace.nombreDeEspacio}",
@@ -43,9 +54,8 @@ class CalendarController {
           end:event.fechaHoraTerminoDeUso,
           url:"http://google.com"
         )
-        jsonResults << evento
-      }
-      println results.size()
-      render jsonResults as JSON
+        eventsInfos << evento
     }
+    eventsInfos
+  }
 }

@@ -4,6 +4,13 @@
   <meta name="layout" content="content-bizhub"/>
   <g:set var="entityName" value="${message(code: 'workspace.label', default: 'Workspace')}"/>
   <title><g:message code="default.show.label" args="[entityName]"/></title>
+  <link rel='stylesheet' type='text/css' href='http://arshaw.com/js/fullcalendar/fullcalendar/fullcalendar.css'/>
+  <script type='text/javascript' src='http://arshaw.com/js/fullcalendar/fullcalendar/fullcalendar.min.js'></script>
+  <g:javascript>
+    $(function(){
+      $("div#rightbox a").button();
+    });
+  </g:javascript>
 </head>
 <body>
 <!--div class="nav">
@@ -73,6 +80,15 @@
       <span class="button"><g:actionSubmit class="edit" action="edit" value="${message(code: 'default.button.edit.label', default: 'Edit')}"/></span>
       <span class="button"><g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/></span>
     </g:form>
+  </div>
+</div>
+<div id="right">
+  <div id="rightbox">
+    <div id="workspaceShortInfo">
+      <g:remoteLink controller="workspace" action="shortInfo" update="workspaceShortInfo" id="${workspaceInstance?.id}">
+        Ver resumen del espacio de trabajo
+      </g:remoteLink>
+    </div>
   </div>
 </div>
 </body>

@@ -20,10 +20,22 @@ import grails.plugins.springsecurity.Secured
 @Secured(["hasRole('ROLE_OPERATOR')"])
 class WorkspaceController {
 
+    def workspaceService
+
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index = {
         redirect(action: "list", params: params)
+    }
+
+    def shortInfo = {
+      def workspaceInfo = workspaceService.obtainWorkspaceDetailInMap(Long.valueOf(params.id))
+      render template: "summary",model:workspaceInfo
+    }
+
+    def hoursWorkspaceByClient = {
+      def thisSpaceInfo = workspaceService.obtainHoursByClientAndWorkspace(Long.valueOf(params.workspaceId),Long.valueOf(params.clientId))
+      render " ${thisSpaceInfo.horasDeUso} horas"
     }
 
     def list = {
