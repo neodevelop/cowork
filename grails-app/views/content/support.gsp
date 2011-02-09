@@ -3,6 +3,7 @@
 <head>
 	<title>Support</title>
     <meta name="layout" content="content-bizhub" />
+  <parameter name="topMenu" value="nav"/>
 </head>
 <body>
 

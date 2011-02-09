@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>BizHub</title>
+<title><g:layoutTitle default="CoWork" /></title>
 
 <!-- CSS Sheet  --> 
 <link rel="stylesheet" href="${createLinkTo(dir: 'themes/bizhub/css', file: 'style.css')}"/>
@@ -61,11 +61,9 @@
 <!-- Begin Header  -->
 <!-- End Header  -->
 <g:set var="idMenu" value="${pageProperty(name:'page.topMenu')}"/>
-<g:if test="${idMenu=='none'}">
+<g:if test="${idMenu}">
+    <g:render template="/includes/${idMenu}"  />
 </g:if>
-<g:else>
-  <g:render template="/includes/nav"  />
-</g:else>
 
 
 <!-- Begin Content  -->

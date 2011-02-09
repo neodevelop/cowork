@@ -4,7 +4,6 @@
   <meta name="layout" content="content-bizhub"/>
   <g:set var="entityName" value="${message(code: 'person.label', default: 'Person')}"/>
   <title>Crear cuenta</title>
-  <parameter name="topMenu" value="none"/>
 </head>
 <body>
 
