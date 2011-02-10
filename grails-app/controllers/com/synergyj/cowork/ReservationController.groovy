@@ -17,6 +17,7 @@ package com.synergyj.cowork
 
 import com.synergyj.cowork.auth.Person
 import grails.plugins.springsecurity.Secured
+import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 
 @Secured(["hasRole('ROLE_OPERATOR')"])
 class ReservationController {
@@ -39,6 +40,9 @@ class ReservationController {
     @Secured(["hasRole('ROLE_OPERATOR') or hasRole('ROLE_USER')"])
     def prepare = { ReservationCommand reservationCommand ->
       def reservation
+      if(!SpringSecurityUtils.ifAllGranted('ROLE_OPERATOR')) {
+	     reservationCommand.clienteId = springSecurityService.principal.id
+      }
       if(reservationCommand.validate()){
         try{
           // TODO : Tomar y tratar la excepción(Horas de trabajo y disponibilidad) en caso de que no se pueda guardar

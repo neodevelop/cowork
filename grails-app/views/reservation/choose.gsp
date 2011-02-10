@@ -48,9 +48,11 @@
     Los espacios de trabajo los buscas por <b>Nombre del aula o direccion</b>
   </span>
 
-  <sec:ifAllGranted roles="ROLE_OPERATOR">
+
+  
   <table width="100%">
     <tr>
+	<sec:ifAllGranted roles="ROLE_OPERATOR">
       <td width="50%">
         <g:formRemote url="[action:'searchClients']" name="searchClient" update="clientSimpleList">
           <label>Cliente:</label>
@@ -58,6 +60,7 @@
           <g:submitButton name="query" value="Consultar" class="button"/>
         </g:formRemote>
       </td>
+</sec:ifAllGranted>
       <td>
         <g:formRemote url="[action:'searchWorkspaces']" name="searchWorkspace" update="workspaceSimpleList">
           <label>Espacio:</label>
@@ -79,8 +82,8 @@
       </td>
     </tr>
   </table>
-  </sec:ifAllGranted>
-
+  
+<!-- 
   <sec:ifAllGranted roles="ROLE_USER">
   <table width="100%">
     <tr>
@@ -103,6 +106,7 @@
     </tr>
   </table>
   </sec:ifAllGranted>
+-->
 
 </div>
 
@@ -110,9 +114,6 @@
 <g:hiddenField name="workspaceId"/>
 <sec:ifAllGranted roles="ROLE_OPERATOR">
   <g:hiddenField name="clienteId"/>
-</sec:ifAllGranted>
-<sec:ifAllGranted roles="ROLE_USER">
-  <g:hiddenField name="clienteId" value="${sec.loggedInUserInfo(field:'id')}"/>
 </sec:ifAllGranted>
 
 <div id="right" style="display:block;">

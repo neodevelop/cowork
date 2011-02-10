@@ -31,17 +31,17 @@ class ReservationCommand {
 
   static constraints = {
     workspaceId nullable:false
-    clienteId nullable:false
+    //clienteId nullable:false
     fechaReservacion nullable:false
     timeFrom blsnk:false
     timeTo blank:false
   }
 
-  Date getFechaHoraInicio(){
+  Date buildFechaHoraInicio(){
     dateFormat.parse(this.fechaReservacion + " " + this.timeFrom)
   }
 
-  Date getFechaHoraFin(){
+  Date buildFechaHoraFin(){
     dateFormat.parse(this.fechaReservacion + " " + this.timeTo)
   }
 }

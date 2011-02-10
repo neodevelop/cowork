@@ -20,7 +20,7 @@ import com.synergyj.cowork.event.EventInfo
 import grails.converters.JSON
 import java.text.SimpleDateFormat
 
-@Secured(["hasRole('ROLE_OPERATOR')"])
+@Secured(['permitAll'])
 class CalendarController {
 
     def calendarService
@@ -29,14 +29,13 @@ class CalendarController {
 
     }
 
-  @Secured(['permitAll'])
+  
     def populateReservations = {
       def results = calendarService.obtainReservations()
       def jsonResults = wrapperEventInfo(results)
       render jsonResults as JSON
     }
 
-  @Secured(['permitAll'])
   def populateReservationsByWorkspace = {
     def results = calendarService.obtainReservationsByWorkspace(Long.valueOf(params.workspaceId))
     def jsonResults = wrapperEventInfo(results)
