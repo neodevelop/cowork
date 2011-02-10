@@ -42,10 +42,13 @@
   </g:if>
   <h1>Realizar reservaciones</h1>
   <span class="bluetext">
-    Puedes buscar a los clientes ya sea por <b>Razon social, RFC o correo electrónico</b><br/>
-    Y los espacioes de trabajo los buscas por <b>Nombre del aula o direccion</b>
+    <sec:ifAllGranted roles="ROLE_OPERATOR">
+      Puedes buscar a los clientes ya sea por <b>Razon social, RFC o correo electrónico</b><br/>
+    </sec:ifAllGranted>
+    Los espacios de trabajo los buscas por <b>Nombre del aula o direccion</b>
   </span>
 
+  <sec:ifAllGranted roles="ROLE_OPERATOR">
   <table width="100%">
     <tr>
       <td width="50%">
@@ -76,12 +79,41 @@
       </td>
     </tr>
   </table>
+  </sec:ifAllGranted>
+
+  <sec:ifAllGranted roles="ROLE_USER">
+  <table width="100%">
+    <tr>
+      <td>
+        <g:formRemote url="[action:'searchWorkspaces']" name="searchWorkspace" update="workspaceSimpleList">
+          <label>Espacio:</label>
+          <g:textField name="workspacequery"/>
+          <g:submitButton name="query" value="Consultar" class="button"/>
+        </g:formRemote>
+      </td>
+    </tr>
+  </thead>
+  </table>
+
+  <table width="100%">
+    <tr>
+      <td valign="top">
+        <div id="workspaceSimpleList"/>
+      </td>
+    </tr>
+  </table>
+  </sec:ifAllGranted>
 
 </div>
 
 <g:form action="prepare">
 <g:hiddenField name="workspaceId"/>
-<g:hiddenField name="clienteId"/>
+<sec:ifAllGranted roles="ROLE_OPERATOR">
+  <g:hiddenField name="clienteId"/>
+</sec:ifAllGranted>
+<sec:ifAllGranted roles="ROLE_USER">
+  <g:hiddenField name="clienteId" value="${sec.loggedInUserInfo(field:'id')}"/>
+</sec:ifAllGranted>
 
 <div id="right" style="display:block;">
   <div id="rightbox">

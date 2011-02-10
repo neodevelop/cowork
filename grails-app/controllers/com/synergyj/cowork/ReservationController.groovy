@@ -29,11 +29,13 @@ class ReservationController {
         redirect(action: "list", params: params)
     }
 
+    @Secured(["hasRole('ROLE_OPERATOR') or hasRole('ROLE_USER')"])
     def choose = {
       ReservationCommand reservationCommand = new ReservationCommand()
       [reservationCommand:reservationCommand]
     }
 
+    @Secured(["hasRole('ROLE_OPERATOR') or hasRole('ROLE_USER')"])
     def prepare = { ReservationCommand reservationCommand ->
       def reservation
       if(reservationCommand.validate()){
@@ -63,6 +65,7 @@ class ReservationController {
       render(template: "../person/clientSimpleList",model: [listClient:listClient])
     }
 
+    @Secured(["hasRole('ROLE_OPERATOR') or hasRole('ROLE_USER')"])
     def searchWorkspaces = {
       def workspacequery = params.workspacequery
       def criteria = Workspace.createCriteria()
