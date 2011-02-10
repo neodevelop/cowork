@@ -22,6 +22,7 @@ import grails.plugins.springsecurity.Secured
 class ReservationController {
 
     def reservationService
+    def springSecurityService
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
@@ -76,6 +77,25 @@ class ReservationController {
         }
       }
       render(template: "../workspace/workspaceSimpleList",model: [listWorkspace:listWorkspace])
+    }
+
+    @Secured(["hasRole('ROLE_USER')"])
+    def showByClient = {
+      def principal = springSecurityService.principal
+      def person = Person.get(principal.id)
+      def reservations = Reservation.findAllByCliente(person)
+      [reservations:reservations]
+    }
+
+    @Secured(["hasRole('ROLE_USER')"])
+    def showShortInfo = {
+      def reservationInfo = reservationService.obtainReservationDetailInMap(Long.valueOf(params.id))
+      render template: 'shortInfo',model:reservationInfo
+    }
+
+    @Secured(["hasRole('ROLE_USER')"])
+    def confirm = {
+      //Hacer el update
     }
 
     def list = {

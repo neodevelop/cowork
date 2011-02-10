@@ -16,11 +16,15 @@
 package com.synergyj.cowork
 
 import com.synergyj.cowork.auth.Person
-import java.text.SimpleDateFormat
 
 class ReservationService {
 
     static transactional = true
+
+    def obtainReservationDetailInMap(Long reservationId){
+      def reservation = Reservation.get(reservationId)
+      return (hoursAndCostInReservation(reservation) << [reservation:reservation])
+    }
 
     def creaReservacion(ReservationCommand reservationCommand) {
       Reservation reservation = new Reservation(reservationCommand.properties)
@@ -101,5 +105,18 @@ class ReservationService {
       }
 
       existenReservacionesPrevias
+    }
+
+    private def hoursAndCostInReservation(reservation){
+      def horasTotalesDeUso = 0
+      def costoTotalDeUso = 0
+
+      long x = reservation.fechaHoraTerminoDeUso.time - reservation.fechaHoraReservacion.time
+      def horasDeUso = x/1000/60/60
+      horasTotalesDeUso += horasDeUso
+      def costoDeReservacion = horasDeUso * Math.rint(reservation.workspace.costoPorHora*100)/100
+      costoTotalDeUso += costoDeReservacion
+
+      [horasDeUso:horasTotalesDeUso,costoTotal:costoTotalDeUso]
     }
 }
