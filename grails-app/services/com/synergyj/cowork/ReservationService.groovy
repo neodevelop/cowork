@@ -16,6 +16,7 @@
 package com.synergyj.cowork
 
 import com.synergyj.cowork.auth.Person
+import java.text.SimpleDateFormat
 
 class ReservationService {
 
@@ -37,12 +38,68 @@ class ReservationService {
       }else{
         throw new ReservationException(message: "No se encuentra el espacio de trabajo...")
       }
-      // TODO: Validar que las horas entren en lo indicado por el usuario
       // TODO: Corroborar que el espacio de trabajo no este ocupado previamente en las horas deseadas
+      def existenReservaciones = buscaReservacionesPrevias(reservation)
+
+      if(existenReservaciones){
+        throw new ReservationException(message:"Este lugar ya esta reservado...")
+      }
+
+      // TODO: Validar que las horas entren en lo indicado por el usuario
+      // TODO: Validar que se reserve por lo menos dos horas antes
+
       if(reservation.save()){
         return reservation
       }else{
         throw new ReservationException(message:"No se pudo realizar la reservación...",reservation: reservation)
       }
+
+    }
+
+    private def buscaReservacionesPrevias(Reservation reservation){
+      GregorianCalendar c = new GregorianCalendar()
+      c.setTime(reservation.fechaHoraReservacion)
+      c.set(Calendar.HOUR,0)
+      c.set(Calendar.MINUTE,0)
+      c.set(Calendar.SECOND,0)
+      c.set(Calendar.MILLISECOND,0)
+
+      def criteriaReservation = Reservation.createCriteria()
+      def reservaciones = criteriaReservation.list {
+        eq('workspace',reservation.workspace)
+        between('fechaHoraReservacion', c.time - 1 , c.time + 1)
+      }
+
+      def existenReservacionesPrevias = false
+
+      reservaciones.each{
+        //println "Validando disponibilidad..."
+        if(reservation.fechaHoraReservacion.compareTo(it.fechaHoraReservacion) > 0){
+          //println "Se puede reservar aun esta antes de la hora de ocupación.."
+          if(reservation.fechaHoraReservacion.compareTo(it.fechaHoraTerminoDeUso) > 0){
+            //println "Se puede apartar el lugar en la hora de inicio"
+            if(!(reservation.fechaHoraTerminoDeUso.compareTo(it.fechaHoraTerminoDeUso) > 0)){
+              //println "Se puede apartar la sala completamente"
+              existenReservacionesPrevias = true
+            }
+          }else{
+            existenReservacionesPrevias = true
+          }
+        }else{
+          existenReservacionesPrevias = true
+        }
+        /*
+        println "Comparamos la hora de inicio: $it.fechaHoraReservacion con $reservation.fechaHoraReservacion =>"
+        println "${it.fechaHoraReservacion.compareTo(reservation.fechaHoraReservacion)}"
+
+        println "Comparamos el rango: $it.fechaHoraReservacion con $reservation.fechaHoraTerminoDeUso =>"
+        println "${it.fechaHoraReservacion.compareTo(reservation.fechaHoraTerminoDeUso)}"
+
+        println "Comparamos la hora de termino: $it.fechaHoraTerminoDeUso con $reservation.fechaHoraTerminoDeUso =>"
+        println "${it.fechaHoraTerminoDeUso.compareTo(reservation.fechaHoraTerminoDeUso)}"
+        */
+      }
+
+      existenReservacionesPrevias
     }
 }

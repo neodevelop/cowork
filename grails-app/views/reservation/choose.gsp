@@ -29,6 +29,17 @@
 </head>
 <body>
 <div id="left">
+  <g:if test="${flash.message}">
+    <br/>
+
+    <div class="message ui-state-error ui-corner-all" style="padding: 0pt 0.7em;">
+      <p style="margin:2px;">
+        <span style="float: left; margin-right: 0.3em;" class="ui-icon ui-icon-alert"></span>
+        ${flash.message}
+      </p>
+    </div>
+
+  </g:if>
   <h1>Realizar reservaciones</h1>
   <span class="bluetext">
     Puedes buscar a los clientes ya sea por <b>Razon social, RFC o correo electrónico</b><br/>
@@ -80,7 +91,7 @@
         <b>Los datos son incorrectos...</b>
       </div>
     </g:hasErrors>
-    <label>Fecha de reservacion:</label> <g:textField name="fechaReservacion"/><br/><br/>
+    <label>Fecha de reservacion:</label> <g:textField name="fechaReservacion" value="${reservationCommand?.fechaReservacion}"/><br/><br/>
     <label>Hora de inicio:</label>
     <br/><input type="text" size="10" class="timeRange" id="timeFrom" name="timeFrom" value="${reservationCommand.timeFrom}"><br/>
     <label>Hora de termino:</label>

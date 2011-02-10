@@ -35,10 +35,16 @@ class ReservationController {
     }
 
     def prepare = { ReservationCommand reservationCommand ->
+      def reservation
       if(reservationCommand.validate()){
-        // TODO : Tomar y tratar la excepción(Horas de trabajo y disponibilidad) en caso de que no se pueda guardar
-        def reservation = reservationService.creaReservacion(reservationCommand)
-        render view:"show",model:[reservationInstance:reservation]
+        try{
+          // TODO : Tomar y tratar la excepción(Horas de trabajo y disponibilidad) en caso de que no se pueda guardar
+          reservation = reservationService.creaReservacion(reservationCommand)
+          render view:"show",model:[reservationInstance:reservation]
+        }catch(ReservationException e){
+          flash.message = "${e.message}"
+          render view: "choose",model:[reservationCommand:reservationCommand]
+        }
       }else{
        render view: "choose",model:[reservationCommand:reservationCommand]
       }
