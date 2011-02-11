@@ -15,6 +15,10 @@ class UrlMappings {
       controller = 'logout'
       action = 'index'
     }
+	name login: '/login' {
+      controller = 'login'
+      action = 'auth'
+    }
     name signup: '/signup' {
       controller = 'register'
       action = 'form'
