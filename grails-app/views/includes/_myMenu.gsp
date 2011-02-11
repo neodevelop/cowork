@@ -7,12 +7,12 @@
   </sec:ifAnyGranted>
   <sec:ifLoggedIn>
   <g:link controller="reservation" action="choose">Realiza una reservación</g:link>
-  </sec:ifLoggedIn>
-  <sec:ifAnyGranted roles="ROLE_USER">
-  <g:link controller="reservation" action="showByClient">Confirmar una reservación</g:link>
   <g:link controller="calendar" action="showReservations">Ver el calendario</g:link>
+  </sec:ifLoggedIn>
+  <sec:ifNotGranted roles="ROLE_OPERATOR">
+  <g:link controller="reservation" action="showByClient">Confirmar una reservación</g:link>
   <g:link controller="person" action="showAccount">Mi cuenta</g:link>
-  </sec:ifAnyGranted>
+  </sec:ifNotGranted>
 </div>
 <g:javascript>
   $("div#myMenu > a").button();
