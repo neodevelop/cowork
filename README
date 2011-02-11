@@ -1,1 +1,6 @@
-README
+Acceder a la app en la url
+http://localhost:8080/cowork/login/full
+en caso de ejecutarse en local...   
+
+En caso de ser una URL remota entonces http://dominio.com/cowork/login/full ...
+
