@@ -42,7 +42,7 @@ environments {
                 minEvictableIdleTimeMillis = 60000
                 timeBetweenEvictionRunsMillis = 60000
                 maxWait = 10000
-                validationQuery = "/* ping */"
+                validationQuery = "/ * ping * /"
             }*/
         }
     }
