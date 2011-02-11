@@ -99,7 +99,9 @@ class ReservationController {
 
     @Secured(["hasRole('ROLE_USER')"])
     def confirm = {
-      //Hacer el update
+      def reservation = Reservation.get(Long.valueOf(params.id))
+      reservation.confirmado = true
+      //Crear el estado de cuenta si es que existiera esa entidad....
     }
 
     def list = {

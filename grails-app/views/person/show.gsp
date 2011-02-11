@@ -4,6 +4,12 @@
   <meta name="layout" content="content-bizhub"/>
   <g:set var="entityName" value="${message(code: 'person.label', default: 'Person')}"/>
   <title><g:message code="default.show.label" args="[entityName]"/></title>
+  <script type="text/javascript" src="${createLinkTo(dir:'js',file:'tables.js')}"></script>
+  <g:javascript>
+    $(function(){
+      $('div#estadoDeCuenta a').button();
+    });
+  </g:javascript>
 </head>
 <body>
 <div class="body">
@@ -46,6 +52,7 @@
       </tbody>
     </table>
   </div>
+  <sec:ifAllGranted roles="ROLE_OPEARTOR">
   <div class="buttons">
     <g:form>
       <g:hiddenField name="id" value="${personInstance?.id}"/>
@@ -53,6 +60,12 @@
       <span class="button"><g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/></span>
     </g:form>
   </div>
+  </sec:ifAllGranted>
+  <br/>
+  <div id="estadoDeCuenta">
+    <g:remoteLink action="showConfirmedReservations" id="${personInstance?.id}" update="estadoDeCuenta">Ver mi estado de cuenta</g:remoteLink>
+  </div>
+
 </div>
 </body>
 </html>

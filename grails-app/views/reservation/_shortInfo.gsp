@@ -4,7 +4,7 @@ Horas reservadas: <b>${horasDeUso} hora(s)</b>
 <div class="linesep"></div>
 Total del costo: <b>$ <g:formatNumber number="${costoTotal}" type="currency" currencyCode="MXN"/></b>
 <br/><br/>
-<g:remoteLink action="confirm" onComplete="confirmed(${reservation.id});">
+<g:remoteLink action="confirm" onComplete="confirmed(${reservation.id});" id="${reservation.id}">
   Confirmar reservación
 </g:remoteLink>
 

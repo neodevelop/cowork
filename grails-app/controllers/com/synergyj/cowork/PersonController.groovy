@@ -24,8 +24,22 @@ import com.synergyj.cowork.auth.Authority
 class PersonController {
 
   def springSecurityService
+  def reservationService
 
   static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+
+  @Secured(["hasRole('ROLE_USER')"])
+  def showAccount = {
+    def personId = springSecurityService.principal.id
+    redirect action: 'show',id: personId
+
+  }
+
+  @Secured(["hasRole('ROLE_USER')"])
+  def showConfirmedReservations = {
+    def model = reservationService.obtainReservationsForClient(Long.valueOf(params.id))
+    render template: '/reservation/infoTable',model:model
+  }
 
   def index = {
     redirect(action: "list", params: params)
@@ -61,6 +75,7 @@ class PersonController {
     }
   }
 
+  @Secured(["hasRole('ROLE_OPERATOR') or hasRole('ROLE_USER')"])
   def show = {
     def personInstance = Person.get(params.id)
     if (!personInstance) {

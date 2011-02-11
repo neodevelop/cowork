@@ -21,6 +21,27 @@ class ReservationService {
 
     static transactional = true
 
+    def obtainReservationsForClient(Long clienteId){
+      def cliente = Person.get(clienteId)
+      def reservations = Reservation.findAllByClienteAndConfirmado(cliente,true)
+      def costoSubtotalDeCliente = 0
+      def reservationsToShow = reservations.collect{ reservation ->
+        def horasCostoDeEstaReservacion = hoursAndCostInReservation(reservation)
+        costoSubtotalDeCliente += horasCostoDeEstaReservacion.costoTotal
+        def r = new Expando()
+        r.nombreDeEspacio = reservation.workspace.nombreDeEspacio
+        r.costoPorHora = reservation.workspace.costoPorHora
+        r.horasDeUso = horasCostoDeEstaReservacion.horasDeUso
+        r.costoDeUso = horasCostoDeEstaReservacion.costoTotal
+        r
+      }
+      [
+        reservations:reservationsToShow,
+        costoSubtotalDeCliente:costoSubtotalDeCliente,
+        iva:(costoSubtotalDeCliente * 0.16),
+        costoTotalDeCliente:(costoSubtotalDeCliente * 1.16)]
+    }
+
     def obtainReservationDetailInMap(Long reservationId){
       def reservation = Reservation.get(reservationId)
       return (hoursAndCostInReservation(reservation) << [reservation:reservation])
