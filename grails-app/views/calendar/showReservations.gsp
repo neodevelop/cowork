@@ -26,7 +26,7 @@
   </g:javascript>
   <style type="text/css">
   #calendar{
-    width:75%;
+    width:100%;
   }
   </style>
 </head>
