@@ -51,7 +51,7 @@ class CalendarController {
                 //2009-11-05T13:15:30Z
           start:event.fechaHoraReservacion,
           end:event.fechaHoraTerminoDeUso,
-          url:"http://google.com"
+          url:g.createLink(controller:"workspace", action:"show", id:event.id)
         )
         eventsInfos << evento
     }
