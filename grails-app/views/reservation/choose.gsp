@@ -14,6 +14,7 @@
 
   <script type="text/javascript" src="http://keith-wood.name/js/jquery.timeentry.js"></script>
   <style type="text/css">@import "http://keith-wood.name/css/jquery.timeentry.css";</style>
+  <script type="text/javascript" src="${createLinkTo(dir:'js',file:'tables.js')}"></script>
   <g:javascript>
     function customRange(input) {
 	  return {minTime: (input.id == 'timeTo' ?
@@ -53,7 +54,7 @@
   <table width="100%">
     <tr>
 	<sec:ifAllGranted roles="ROLE_OPERATOR">
-      <td width="50%">
+      <td>
         <g:formRemote url="[action:'searchClients']" name="searchClient" update="clientSimpleList">
           <label>Cliente:</label>
           <g:textField name="clientquery"/>
@@ -61,7 +62,7 @@
         </g:formRemote>
       </td>
 </sec:ifAllGranted>
-      <td>
+      <td width="50%">
         <g:formRemote url="[action:'searchWorkspaces']" name="searchWorkspace" update="workspaceSimpleList">
           <label>Espacio:</label>
           <g:textField name="workspacequery"/>
@@ -74,10 +75,10 @@
 
   <table width="100%">
     <tr>
-      <td width="50%" valign="top">
+      <td valign="top">
         <div id="clientSimpleList"/>
       </td>
-      <td valign="top">
+      <td width="50%" valign="top">
         <div id="workspaceSimpleList"/>
       </td>
     </tr>

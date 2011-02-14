@@ -4,6 +4,12 @@
   <meta name="layout" content="content-bizhub"/>
   <g:set var="entityName" value="${message(code: 'person.label', default: 'Cliente')}"/>
   <title><g:message code="default.list.label" args="[entityName]"/></title>
+  <script type="text/javascript" src="${createLinkTo(dir:'js',file:'tables.js')}"></script>
+  <g:javascript>
+    $(function(){
+      $("#clients").styleTable();
+    });
+  </g:javascript>
 </head>
 <body>
 <div class="body">
@@ -11,8 +17,8 @@
   <g:if test="${flash.message}">
     <div class="message">${flash.message}</div>
   </g:if>
-  <div class="list">
-    <table cellpadding="5" >
+  <div id="clients" class="list">
+    <table width="100%" class="full" cellpadding="0" cellspacing="0">
       <thead>
       <tr>
 
