@@ -27,6 +27,23 @@ environments {
         dataSource {
             dbCreate = "update"
             url = "jdbc:hsqldb:file:prodDb;shutdown=true"
+
+			/*dbCreate = "update"
+			url = "jdbc:mysql://localhost/cowork?useUnicode=true&characterEncoding=UTF-8&characterSetResults=UTF-8"
+            driverClassName = "com.mysql.jdbc.Driver"
+            dialect = org.hibernate.dialect.MySQL5InnoDBDialect
+            username = "cowork"
+            password = "desarrollo2014"
+            properties {
+                maxActive = 10
+                maxIdle = 5
+                minIdle = 5
+                initialSize = 5
+                minEvictableIdleTimeMillis = 60000
+                timeBetweenEvictionRunsMillis = 60000
+                maxWait = 10000
+                validationQuery = "/ * ping * /"
+            }*/
         }
     }
 }
