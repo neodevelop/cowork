@@ -53,6 +53,15 @@
 
         <tr class="prop">
           <td valign="top" class="name">
+            <label for="repassword"><g:message code="person.password.label" default="Confirmar Password"/></label>
+          </td>
+          <td valign="top" class="value ${hasErrors(bean: personInstance, field: 'password', 'errors')}">
+            <g:passwordField name="repassword"  value=""/>
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name">
             <label for="razonSocial"><g:message code="person.razonSocial.label" default="Razon Social"/></label>
           </td>
           <td valign="top" class="value ${hasErrors(bean: personInstance, field: 'razonSocial', 'errors')}">
