@@ -15,6 +15,7 @@
       $('#calendar').fullCalendar({
         theme:true,
         editable:false,
+        defaultView:'agendaWeek',
         header: {
           left: 'prev,next today',
           center: 'title',
