@@ -31,7 +31,7 @@
       <tr class="prop">
         <td valign="top" class="name"><g:message code="reservation.cliente.label" default="Cliente"/></td>
 
-        <td valign="top" class="value"><g:link controller="person" action="show" id="${reservationInstance?.cliente?.id}">${reservationInstance?.cliente?.encodeAsHTML()}</g:link></td>
+        <td valign="top" class="value"><g:link controller="person" action="show" id="${reservationInstance?.cliente?.id}">${reservationInstance?.cliente?.encodeAsHTML()} - ${reservationInstance?.cliente?.razonSocial}</g:link></td>
 
       </tr>
 

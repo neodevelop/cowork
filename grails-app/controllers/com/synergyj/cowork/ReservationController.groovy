@@ -45,7 +45,6 @@ class ReservationController {
       }
       if(reservationCommand.validate()){
         try{
-          // TODO : Tomar y tratar la excepción(Horas de trabajo y disponibilidad) en caso de que no se pueda guardar
           reservation = reservationService.creaReservacion(reservationCommand)
           render view:"show",model:[reservationInstance:reservation]
         }catch(ReservationException e){
