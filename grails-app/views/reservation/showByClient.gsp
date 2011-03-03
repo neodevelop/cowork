@@ -24,7 +24,7 @@
     </thead>
     <tbody>
     <g:each in="${reservations}" var="r">
-      <tr>
+      <tr class="reservation${r.id}">
         <td>${r.workspace.nombreDeEspacio}</td>
         <td><g:formatDate date="${r.fechaHoraReservacion}" format="dd-MM-yyyy"/></td>
         <td><g:formatDate date="${r.fechaHoraReservacion}" format="hh:mm"/></td>

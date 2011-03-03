@@ -103,6 +103,12 @@ class ReservationController {
       //Crear el estado de cuenta si es que existiera esa entidad....
     }
 
+    @Secured(["hasRole('ROLE_USER')"])
+    def cancel = {
+      def reservation = Reservation.get(Long.valueOf(params.id))
+      reservation.delete()
+    }
+
     def list = {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
         [reservationInstanceList: Reservation.list(params), reservationInstanceTotal: Reservation.count()]
