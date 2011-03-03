@@ -59,11 +59,16 @@
 	<g:layoutHead />
 
 </head>
-
+<body>
 <div id="wrapper">
 
 <!-- Begin Top Bar  -->
-  <div id="top"></div>
+  <div id="top">
+    <img src="${createLinkTo(dir:'themes/bizhub/images',file:'topbar.png')}" alt="head" usemap="#shapes" />
+    <map name="shapes" id="shapes">
+        <area coords="860,0,930,0,800,110,730,110" shape="poly" href="${createLink(controller:'reservation',action:'choose')}" title="Rectangle" alt="Rectangle"/>
+    </map>
+  </div>
   
 <!-- End Top Bar  --> 
 
