@@ -25,7 +25,10 @@ environments {
     }
     production {
         dataSource {
-			dbCreate = "update"
+            dbCreate = "update"
+            url = "jdbc:hsqldb:file:prodDb;shutdown=true"
+
+			/*dbCreate = "update"
 			url = "jdbc:mysql://localhost/cowork?useUnicode=true&characterEncoding=UTF-8&characterSetResults=UTF-8"
             driverClassName = "com.mysql.jdbc.Driver"
             dialect = org.hibernate.dialect.MySQL5InnoDBDialect
@@ -40,7 +43,7 @@ environments {
                 timeBetweenEvictionRunsMillis = 60000
                 maxWait = 10000
                 validationQuery = "/ * ping * /"
-            }
+            }*/
         }
     }
 }

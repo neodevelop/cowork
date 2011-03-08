@@ -6,3 +6,4 @@ target/
 /devDB.log
 /devDB.properties
 /devDB.script
+/stacktrace.log

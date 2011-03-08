@@ -97,22 +97,19 @@ class ReservationService {
 
       def existenReservacionesPrevias = false
 
-      reservaciones.each{
+      for(Reservation it in reservaciones){
         //println "Validando disponibilidad..."
-        if(reservation.fechaHoraReservacion.compareTo(it.fechaHoraReservacion) > 0){
-          //println "Se puede reservar aun esta antes de la hora de ocupación.."
-          if(reservation.fechaHoraReservacion.compareTo(it.fechaHoraTerminoDeUso) > 0){
-            //println "Se puede apartar el lugar en la hora de inicio"
-            if(!(reservation.fechaHoraTerminoDeUso.compareTo(it.fechaHoraTerminoDeUso) > 0)){
-              //println "Se puede apartar la sala completamente"
-              existenReservacionesPrevias = true
-            }
-          }else{
-            existenReservacionesPrevias = true
-          }
-        }else{
+        //println "Global: (${reservation.fechaHoraReservacion.compareTo(it.fechaHoraReservacion)} < 0 && ${reservation.fechaHoraTerminoDeUso.compareTo(it.fechaHoraReservacion)} <= 0) || (${reservation.fechaHoraReservacion.compareTo(it.fechaHoraTerminoDeUso)} >= 0 && ${reservation.fechaHoraTerminoDeUso.compareTo(it.fechaHoraTerminoDeUso)} > 0)"
+        if( !(( reservation.fechaHoraReservacion.compareTo(it.fechaHoraReservacion) < 0
+                && reservation.fechaHoraTerminoDeUso.compareTo(it.fechaHoraReservacion) <= 0 )
+              ||
+            ( reservation.fechaHoraReservacion.compareTo(it.fechaHoraTerminoDeUso) >= 0
+                && reservation.fechaHoraTerminoDeUso.compareTo(it.fechaHoraTerminoDeUso) > 0 ))
+        ){
           existenReservacionesPrevias = true
         }
+        if(existenReservacionesPrevias)
+            break;
         /*
         println "Comparamos la hora de inicio: $it.fechaHoraReservacion con $reservation.fechaHoraReservacion =>"
         println "${it.fechaHoraReservacion.compareTo(reservation.fechaHoraReservacion)}"

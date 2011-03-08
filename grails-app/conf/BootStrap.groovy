@@ -19,7 +19,7 @@ class BootStrap {
         def user = new Authority(authority:'ROLE_USER')
         user.save(flush:true)
       }
-      /*def operatorRole = Authority.findByAuthority('ROLE_OPERATOR')
+      def operatorRole = Authority.findByAuthority('ROLE_OPERATOR')
       if(Person.count() == 0){
         println "Creando personas de prueba"
         5.times {
@@ -40,7 +40,7 @@ class BootStrap {
           def reservation = generateReservation()
           reservation.save(flush:true)
         }
-      }*/
+      }
     }
     def destroy = {
     }
