@@ -38,7 +38,16 @@
             <label for="email"><g:message code="person.email.label" default="Email"/></label>
           </td>
           <td valign="top" class="value ${hasErrors(bean: personInstance, field: 'email', 'errors')}">
-            <g:textField name="email" value="${personInstance?.email}"/>
+            <g:textField name="email" value="${personInstance?.email}" />
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name">
+            <label for="email"><g:message code="person.email.label" default="Confirmar Email"/></label>
+          </td>
+          <td valign="top" class="value ${hasErrors(bean: personInstance, field: 'email', 'errors')}">
+            <g:textField name="confirmaremail" size="43"/>
           </td>
         </tr>
 

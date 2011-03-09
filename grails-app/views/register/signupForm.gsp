@@ -18,6 +18,14 @@
           repassword:{
             required:true,
             equalTo:"#password"
+          },
+          email:{
+            required:true,
+            email:true
+          },
+          confirmaremail:{
+            required:true,
+            equalTo:"#email"
           }
         },
         messages:{
@@ -28,6 +36,14 @@
           repassword:{
             required:" Por favor reescribe tu password...",
             equalTo:" Los passwords no coinciden..."
+          },
+          email:{
+            required:" Por favor escribe tu correo...",
+            email:" Esta no es una dirección de correo válida..."
+          },
+          confirmaremail:{
+            required:" Por favor reescribe tu correo...",
+            equalTo:" Las direcciones de correo no coinciden..."
           }
         }
       });
